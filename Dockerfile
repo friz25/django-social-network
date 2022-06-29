@@ -8,10 +8,14 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
   && apt-get install netcat -y
 RUN apt-get update -y && apt-get install postgresql gcc python3-dev musl-dev -y
-RUN pip install --upgrade pip
+RUN curl -sSl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | POETRY_HOME=/opt/poetry python %% \
+    cd /usr/local/bin && \
+    ln -s /opt/poetry/bin/poetry && \
+    poetry config virtualenvs.create false \
 
-COPY ./reg.txt .
-RUN pip install -r req.txt
+COPY ./pyproject.toml ./poetry.lock* /usr/src/app/
+
+RUN poetry install
 
 COPY ./entrypoint.sh .
 

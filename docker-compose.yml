@@ -19,5 +19,5 @@ services:
       - POSTGRES_PASSWORD=friznet_pass
       - POSTGRES_DB=friznet
 
-  volumes:
+volumes:
     friznet_postgres_data:

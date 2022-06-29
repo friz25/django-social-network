@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os, sys
+from datetime import timedelta
 from pathlib import Path
 
 import sys,os
@@ -141,3 +142,5 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
    # 'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+AUTH_USER_MODEL = 'src.profiles.UserNet'
